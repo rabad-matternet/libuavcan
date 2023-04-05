@@ -34,7 +34,7 @@ endif ()
 # Probably output files should be saved into CMake output dir?
 #
 message(STATUS "cmake current source dir = " ${CMAKE_CURRENT_SOURCE_DIR})
-execute_process(COMMAND ${PYTHON_EXECUTABLE} setup.py build WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dsdl_compiler)
+execute_process(COMMAND ${PYTHON_EXECUTABLE} ./libuavcan/dsdl_compiler/setup.py build WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dsdl_compiler)
 set(DSDLC_INPUTS "test/dsdl_test/root_ns_a" "test/dsdl_test/root_ns_b" "${CMAKE_CURRENT_SOURCE_DIR}/../dsdl/uavcan")
 set(DSDLC_OUTPUT "include/dsdlc_generated")
 
@@ -77,7 +77,7 @@ add_dependencies(uavcan libuavcan_dsdlc)
 install(TARGETS uavcan                            DESTINATION lib)
 install(DIRECTORY include/uavcan                  DESTINATION include)
 install(DIRECTORY include/dsdlc_generated/uavcan  DESTINATION include)  # Generated and lib's .hpp
-install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} setup.py install --record installed_files.log
+install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} ./libuavcan/dsdl_compiler/setup.py install --record installed_files.log
                               WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dsdl_compiler)")
 
 #
